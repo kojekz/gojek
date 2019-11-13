@@ -1,8 +1,8 @@
 <?php date_default_timezone_set('Asia/Jakarta');
 include "function.php";
 echo color("red","[][][][][][][][][][][][][][][][][][][][][]");
-echo color("red","\n[]  Auto Create Gojek X Redeem Voucher  []\n");
-echo color("red","[]  Creator : Kentankers                []\n");
+echo color("red","\n[]  Auto Create Gojek Redeem Voucher GOFOOD  []\n");
+echo color("red","[]  Creator : @kojek.slur                []\n");
 echo "[]  Version : Beta                      []\n";
 echo "[]  Time    : ".date('[d-m-Y] [H:i:s]')."   []\n";
 echo "[][][][][][][][][][][][][][][][][][][][][]\n\n";
