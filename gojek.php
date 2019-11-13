@@ -6,7 +6,6 @@ echo color("red","[]  Creator : @kojek.slur                []\n");
 echo "[]  Version : Beta                      []\n";
 echo "[]  Time    : ".date('[d-m-Y] [H:i:s]')."   []\n";
 echo "[][][][][][][][][][][][][][][][][][][][][]\n\n";
-
 function change(){
         $nama = nama();
         $email = str_replace(" ", "", $nama) . mt_rand(100, 999);
@@ -18,6 +17,9 @@ function change(){
         if(strpos($register, '"otp_token"')){
         $otptoken = getStr('"otp_token":"','"',$register);
         echo color("green","+] Kode verifikasi sudah di kirim")."\n";
+        }else{
+        echo color("red","Nomor HP sudah terdaftar");        
+        }
         otp:
         echo color("nevy","?] OTP : ");
         $otp = trim(fgets(STDIN));
@@ -27,6 +29,9 @@ function change(){
         echo color("green","+] Berhasil mendaftar");
         $token = getStr('"access_token":"','"',$verif);
         $uuid = getStr('"resource_owner_id":',',',$verif);
+        }else{
+        echo color("red","OTP Salah !");
+        goto otp;
         echo "\n".color("nevy","?] Mau Rendeem Voucher?: ");
         $pilihan = trim(fgets(STDIN));
         if($pilihan == "y" || $pilihan == "Y"){
@@ -136,43 +141,15 @@ function change(){
                                         $debug['text'] = $pesan;
                                         $debug['respon'] = json_decode($datas, true);
                                         }
-         if(strpos($cekvoucher, 'Voucher Rp 20.000 pakai GoFood')){
-         save("akungojek20k.txt","[+] Gojek Account Info [+]\nNama = $nama\nNomer = $no\nAccess Token = $token");
-         }else{
-         save("akungojek10k.txt","[+] Gojek Account Info [+]\nNama = $nama\nNomer = $no\nAccess Token = $token");
-         }
-         setpin:
-         echo "\n".color("nevy","?] Mau Nembak Voucher Lagi ? : ");
-         $pilih1 = trim(fgets(STDIN));
-         if($pilih1 == "y" || $pilih1 == "Y"){
+        if(strpos($cekvoucher, 'Voucher Rp 20.000 pakai GoFood')){
+        save("akungojek20k.txt","[+] Gojek Account Info [+]\nNama = $nama\nNomer = $no\nAccess Token = $token");
+        }else{
+        save("akungojek10k.txt","[+] Gojek Account Info [+]\nNama = $nama\nNomer = $no\nAccess Token = $token");
+        }
+        echo "\n".color("nevy","?] Mau Nembak Voucher Lagi ? : ");
+        $pilih1 = trim(fgets(STDIN));
+        if($pilih1 == "y" || $pilih1 == "Y"){
         goto ulang;
-         }else if($pilih1 == "n" || $pilih1 == "N"){
+        }else if($pilih1 == "n" || $pilih1 == "N"){
         die();
-         }else{
-         echo color("red","-] Access Denied !\n");
-         }
-         }
-         }
-         }
-         }else{
-         echo color("red","-] Otp yang anda Masukkan salah");
-         echo"\n==================================\n\n";
-         echo color("yellow","!] Silahkan Masukkan kembali\n");
-         goto otp;
-         }
-         }else{
-         echo "Nomor hp sudah terdaftar";
-         echo "\nUlangi dari Awal? (y/n): ";
-         $pilih = trim(fgets(STDIN));
-         if($pilih == "y" || $pilih == "Y"){
-         goto ulang;
-         }else{
-         echo "Error, Please Try Again !";
-         }
-         }else{
-                echo "\n==============Register==============\n";
-                goto ulang;
-         }
-}
-}
-echo change()."\n"; ?>
+?>
